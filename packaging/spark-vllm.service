@@ -1,0 +1,14 @@
+[Unit]
+Description=DGX Spark vLLM OpenAI-compatible server
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/docker start spark-vllm
+ExecStop=/usr/bin/docker stop spark-vllm
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
